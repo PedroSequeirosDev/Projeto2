@@ -37,9 +37,10 @@ namespace MealPlanner.Model
             {
 
                 string[] lines = File.ReadAllLines(file);
-                string name = lines[0];
-                double successRate = double.Parse(lines[1]);
-                Dictionary<IIngredient, int> ingredientsNeeded =
+                string[] firstLine = lines[0].Split(' ');
+                string name = firstLine[0];
+                double successRate = double.Parse(firstLine[1]);
+                Dictionary<IIngredient, int> neededIngredients =
                     new Dictionary<IIngredient, int>();
 
                 for (int i = 2; i < lines.Length; i++)
@@ -50,12 +51,12 @@ namespace MealPlanner.Model
                     IIngredient ingredient = pantry.GetIngredient(nameOfIngredient);
                     if (ingredient != null)
                     {
-                        ingredientsNeeded.Add(ingredient, quantity);
+                        neededIngredients.Add(ingredient, quantity);
                     }
 
                 }
 
-                IRecipe recipe = new Recipe(name, ingredientsNeeded,
+                IRecipe recipe = new Recipe(name, neededIngredients,
                         successRate);
                 recipeBook.Add(recipe);
             }
