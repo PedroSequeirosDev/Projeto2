@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 
 namespace MealPlanner.Model
 {
@@ -106,7 +107,20 @@ namespace MealPlanner.Model
         /// <param name="file">Path to the ingredients file</param>
         public void LoadIngredientsFile(string file)
         {
-            //Implement Me
+            string[] ingredientsFile = File.ReadAllLines(file);
+
+
+            foreach (string line in ingredientsFile)
+            {
+                string[] parts = line.Split(',');
+                string name = parts[0];
+                string type = parts[1];
+                int quantity = int.Parse(parts[2]);
+
+                IIngredient ingredient = new Ingredient(name, type);
+                AddIngredient(ingredient, quantity);
+            }
+
         }
     }
 }
