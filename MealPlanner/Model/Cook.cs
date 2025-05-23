@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic;
 
 namespace MealPlanner.Model
 {
@@ -59,6 +60,11 @@ namespace MealPlanner.Model
                 IRecipe recipe = new Recipe(name, neededIngredients,
                         successRate);
                 recipeBook.Add(recipe);
+                recipeBook.Sort();
+
+
+
+
             }
 
         }

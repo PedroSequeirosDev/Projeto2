@@ -4,8 +4,10 @@ using MealPlanner.Model;
 using MealPlanner.View;
 
 
-namespace MealPlanner {
-    public class Program {
+namespace MealPlanner
+{
+    public class Program
+    {
 
         //Parses command line arguments, initializes the model
         //and starts the controller loop.
