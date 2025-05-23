@@ -40,7 +40,14 @@ namespace MealPlanner.Model
         /// <param name="quantity">The new amount to set</param>
         public void AddIngredient(IIngredient ingredient, int quantity)
         {
-            //Implement Me
+            if (ingredients.ContainsKey(ingredient))
+            {
+                ingredients[ingredient] += quantity;
+            }
+            else
+            {
+                ingredients.Add(ingredient, quantity);
+            }
         }
 
         /// <summary>

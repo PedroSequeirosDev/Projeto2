@@ -12,8 +12,6 @@ namespace MealPlanner.Model
 
         public double SuccessRate { get; }
 
-        /// this class implements IRecipe and makes so the recipes are ordered alphabetically
-
         public Recipe(string name, IReadOnlyDictionary<IIngredient, int> ingredientsNeeded, double successRate)
         {
             Name = name;
