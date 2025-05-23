@@ -43,7 +43,7 @@ namespace MealPlanner.Model
                 Dictionary<IIngredient, int> neededIngredients =
                     new Dictionary<IIngredient, int>();
 
-                for (int i = 2; i < lines.Length; i++)
+                for (int i = 1; i < lines.Length; i++)
                 {
                     string[] parts = lines[i].Split(' ');
                     string nameOfIngredient = parts[0];
