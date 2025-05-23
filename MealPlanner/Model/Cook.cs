@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MealPlanner.Model
 {
@@ -30,8 +33,35 @@ namespace MealPlanner.Model
         /// <param name="recipeFiles">Array of file paths</param>
         public void LoadRecipeFiles(string[] recipeFiles)
         {
+            foreach (string file in recipeFiles)
+            {
+
+                string[] lines = File.ReadAllLines(file);
+                string name = lines[0];
+                double successRate = double.Parse(lines[1]);
+                Dictionary<IIngredient, int> ingredientsNeeded =
+                    new Dictionary<IIngredient, int>();
+
+                for (int i = 2; i < lines.Length; i++)
+                {
+                    string[] parts = lines[i].Split(' ');
+                    string nameOfIngredient = parts[0];
+                    int quantity = int.Parse(parts[1]);
+                    IIngredient ingredient = pantry.GetIngredient(nameOfIngredient);
+                    if (ingredient != null)
+                    {
+                        ingredientsNeeded.Add(ingredient, quantity);
+                    }
+
+                }
+
+                IRecipe recipe = new Recipe(name, ingredientsNeeded,
+                        successRate);
+                recipeBook.Add(recipe);
+            }
 
         }
+
 
         /// <summary>
         /// Attempts to cook a meal from a given recipe. Consumes pantry 
