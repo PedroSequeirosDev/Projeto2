@@ -109,13 +109,12 @@ namespace MealPlanner.Model
         {
             string[] ingredientsFile = File.ReadAllLines(file);
 
-
             foreach (string line in ingredientsFile)
             {
-                string[] parts = line.Split(',');
-                string name = parts[0];
-                string type = parts[1];
-                int quantity = int.Parse(parts[2]);
+                string[] part = line.Split(' ');
+                string name = part[0];
+                string type = part[1];
+                int quantity = int.Parse(part[2]);
 
                 IIngredient ingredient = new Ingredient(name, type);
                 AddIngredient(ingredient, quantity);
